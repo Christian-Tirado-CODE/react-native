@@ -1,23 +1,41 @@
-import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, Button, TouchableWithoutFeedback, Keyboard } from "react-native";
 import Card from "../components/Card";
 import Colors from "../constants/colors";
 import Input from "../components/Input";
 
 const StartGameScreen = (props) => {
+  const [enteredValue, setEnteredValue] = useState("");
+
+  const numberInputHandler = (inputText) => {
+    setEnteredValue(inputText.replace(/[^0-9]/g, ''));
+  };
   return (
+    <TouchableWithoutFeedback onPress={() => {
+      Keyboard.dismiss();
+    }}>
     <View style={styles.screen}>
       <Text style={styles.title}>Start a new game!</Text>
       <Card style={styles.inputContainer}>
         <Text>Select a Number</Text>
-        <Input style={styles.input} blurOnSubmit autoCapitalize="none" autoCorrect={false} keyboardType="number-pad" maxLength={2}/>
+        <Input
+          style={styles.input}
+          value={enteredValue}
+          onChangeText={numberInputHandler}
+          blurOnSubmit
+          autoCapitalize="none"
+          autoCorrect={false}
+          keyboardType="number-pad"
+          maxLength={2}
+        />
 
         <View style={styles.buttonContainer}>
-          <Button title="Reset" onPress={() => {}} color={Colors.accent}/>
-          <Button title="Confirm" onPress={() => {}} color={Colors.primary}/>
+          <Button title="Reset" onPress={() => {}} color={Colors.accent} />
+          <Button title="Confirm" onPress={() => {}} color={Colors.primary} />
         </View>
       </Card>
     </View>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -33,8 +51,8 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: 300,
-    maxWidth: '80%',
-    alignItems: 'center'
+    maxWidth: "80%",
+    alignItems: "center",
   },
 
   buttonContainer: {
@@ -44,12 +62,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   button: {
-    width: 100
+    width: 100,
   },
   input: {
     width: 50,
-    textAlign: 'center'
-  }
+    textAlign: "center",
+  },
 });
 
 export default StartGameScreen;
