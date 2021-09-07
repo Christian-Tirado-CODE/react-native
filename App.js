@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, Text, ScrollView } from "react-native";
 import Header from "./components/Header";
 import User from "./components/User";
@@ -29,9 +29,6 @@ export default function App() {
    content = <View testID="users-container">
               {users.map(user => <User key={user.id} name={user.name} email={user.email} />)}
              </View>
-
-      
-    
   }
 
    
