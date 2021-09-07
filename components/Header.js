@@ -5,7 +5,7 @@ const Header = (props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Users</Text>
-      <Button title="Fetch Users"color={'white'} onPress={() => props.onFetchUsers()}/>
+      <Button testID="load-users-btn" title="Fetch Users"color={'white'} onPress={() => props.onFetchUsers()}/>
     </View>
   );
 };
